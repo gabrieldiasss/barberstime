@@ -2,35 +2,40 @@ import styled from 'styled-components'
 
 export const Top = styled.div`
 
+
     background: var(--blue-light);
 
     .react-icons {
         position: absolute;
-        top: 25px;
-        left: 25px;
+        top: 20px;
+        left: 20px;
         font-size: 25px;
         color: #fff;
     }
 
     header {
+
         height: 20vh;
         
         display: flex;
         justify-content: center;
         align-items: center;
-
+        
         h1 {
-            margin-top: 2rem;
+
+            margin-top: 3rem;
             color: #fff;
             font-size: 3rem;
+
+            @media(max-width: 346px) {
+                font-size: 2.6rem;
+            }
 
             span {
                 font-weight: 700;
             }
         }
     }
-
-   
 
 `
 
@@ -44,38 +49,40 @@ export const Main = styled.main`
     flex-direction: column;
     justify-content: space-between;
 
-    flex: 1;
+    @media(max-width: 375px) {
+        padding: 2rem 2rem;
+    }
+
+    @media(max-width: 330px) {
+        padding: 2rem 1.8rem;
+    }
 
     h2 {
         font-size: 1.7rem;
     }
 
-    div {
+    form {
 
-        form {
+        margin-top: 2rem;
 
-            margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
 
-            display: flex;
-            flex-direction: column;
+        input {
+            width: 100%;
+            height: 3.8rem;
 
-            input {
-                width: 100%;
-                height: 3.8rem;
+            padding: 0 2rem;
 
-                padding: 0 2rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.25);
 
-                box-shadow: 0 3px 15px rgba(0,0,0,0.25);
+            border: 0;
+            outline: 0;
 
-                border: 0;
-                outline: 0;
+            border-radius: 0.3rem;
 
-                border-radius: 0.3rem;
-
-                & + input {
-                    margin-top: 1.8rem;
-                }
-
+            & + input {
+                margin-top: 1.8rem;
             }
 
         }
@@ -134,7 +141,7 @@ export const Main = styled.main`
         }
         .ldio-zbpv5ybpu8e div { box-sizing: content-box; }
                 
-            }
+        }
 
     p {
         display: flex;
@@ -154,6 +161,27 @@ export const Main = styled.main`
         }
     }
 
+    
+    @media(max-width: 346px) {
+
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        form {
+            input {
+                height: 3.6rem;
+            }
+        }
+
+        button {
+            height: 3.3rem;
+        }
+    }
+
+    
+}
+
 `
 
 export const Authenticates = styled.div`
@@ -165,7 +193,7 @@ export const Authenticates = styled.div`
     padding-top: 3rem;
 
     span {
-        margin-bottom: 1rem;
+        margin: 0 1rem 1rem 1rem;
         position: relative;
         color: #d5d5d5;
 
@@ -175,16 +203,25 @@ export const Authenticates = styled.div`
             position: absolute;
             height: 1px;
 
-            width: 100px;
+            width: 70px;
             bottom: 50%;
 
             right: 50px;
+
+            @media(max-width: 355px) {
+                right: 30px;
+            }
 
             background: var(--line);
         }
 
         &::after {
             left: 50px;
+
+            @media(max-width: 355px) {
+                left: 30px;
+            }
+            
         }
 
     }

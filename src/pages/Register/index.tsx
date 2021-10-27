@@ -12,6 +12,9 @@ import { FcGoogle } from "react-icons/fc";
 import { BsArrow90DegLeft } from "react-icons/bs"
 import { Link, useHistory } from 'react-router-dom';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 type RegisterUsers = {
     name: string;
     email: string;
@@ -36,9 +39,18 @@ export function Register() {
 
     })
 
+    .catch((err) => {
+        toast.error(err?.response?.data?.error)
+        toast.error(err?.response?.data?.errInvalid?.message)
+    })
+
     return (
         <>
                 <Top>
+
+                <ToastContainer
+                    autoClose={3000}
+                />
                     
                         <IconContext.Provider value={{ className: "react-icons" }} >
                             <Link to="/" >

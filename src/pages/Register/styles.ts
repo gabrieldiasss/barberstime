@@ -6,8 +6,8 @@ export const Top = styled.div`
 
     .react-icons {
         position: absolute;
-        top: 25px;
-        left: 25px;
+        top: 20px;
+        left: 20px;
         font-size: 25px;
         color: #fff;
     }
@@ -20,17 +20,19 @@ export const Top = styled.div`
         align-items: center;
 
         h1 {
-            margin-top: 2rem;
+            margin-top: 3rem;
             color: #fff;
             font-size: 3rem;
+
+            @media(max-width: 346px) {
+                font-size: 2.6rem;
+            }
 
             span {
                 font-weight: 700;
             }
         }
     }
-
-   
 
 `
 
@@ -44,7 +46,13 @@ export const Main = styled.main`
     flex-direction: column;
     justify-content: space-between;
 
-    flex: 1;
+    @media(max-width: 375px) {
+        padding: 2rem 2rem;
+    }
+
+    @media(max-width: 330px) {
+        padding: 2rem 1.8rem;
+    }
 
     h2 {
         font-size: 1.7rem;
@@ -113,6 +121,27 @@ export const Main = styled.main`
         }
     }
 
+    
+
+    @media(max-width: 346px) {
+
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        form {
+            input {
+                height: 3.6rem;
+            }
+        }
+
+        button {
+            height: 3.3rem;
+        }
+    }
+
+    
+
 `
 
 export const Authenticates = styled.div`
@@ -134,16 +163,24 @@ export const Authenticates = styled.div`
             position: absolute;
             height: 1px;
 
-            width: 100px;
+            width: 70px;
             bottom: 50%;
 
             right: 50px;
 
             background: var(--line);
+
+            @media(max-width: 355px) {
+                right: 30px;
+            }
         }
 
         &::after {
             left: 50px;
+
+            @media(max-width: 355px) {
+                left: 30px;
+            }
         }
 
     }
