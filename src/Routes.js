@@ -1,8 +1,12 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import { Home } from './components/home';
-import { Login } from './components/Login';
-import { Register } from './components/Register';
+import { InicialPage } from './pages/InicialPage';
+import { Login } from './pages/Login';
+import { Register } from './pages/Register';
+import { Home } from './pages/Home'
+
+import PrivateHome from './private/PrivateHome.tsx'
+import PrivateRedirectToHome from './private/PrivateLogin.tsx'
 
 export function Routes() {
 
@@ -10,9 +14,10 @@ export function Routes() {
 
         <Router>
             <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/register" component={Register} />
+                <PrivateRedirectToHome exact path="/" component={InicialPage} />
+                <PrivateRedirectToHome exact path="/login" component={Login} />
+                <PrivateRedirectToHome exact path="/register" component={Register} />
+                <PrivateHome exact path="/home" component={Home} />
             </Switch>
         </Router>
     )

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Container, Top, Bottom } from './styles'
 
-export function Home() {
+export function InicialPage() {
 
     return (
         <Container>

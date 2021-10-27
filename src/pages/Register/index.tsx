@@ -1,3 +1,7 @@
+import { useForm, SubmitHandler } from 'react-hook-form'
+
+import axios from 'axios'
+
 import { Main, Authenticates, Top } from './styles'
 import { IconContext } from 'react-icons'
 
@@ -6,13 +10,34 @@ import { FaTwitter } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 import { BsArrow90DegLeft } from "react-icons/bs"
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+
+type RegisterUsers = {
+    name: string;
+    email: string;
+    password: string;
+}
 
 export function Register() {
 
+    let history = useHistory()
+
+    const { register, handleSubmit} = useForm<RegisterUsers>()
+
+    const onSubmit: SubmitHandler<RegisterUsers> = (data) =>  axios.post("https://login-api-gabriel.herokuapp.com/auth/register", data) 
+    
+    .then((response) => {
+        const { data: { token } } = response
+
+        if(response.data) {
+            localStorage.setItem("accessToken", token )
+            history.push("/home")
+        }
+
+    })
+
     return (
         <>
-        
                 <Top>
                     
                         <IconContext.Provider value={{ className: "react-icons" }} >
@@ -38,19 +63,23 @@ export function Register() {
 
                         <h2>Crie sua conta</h2>
 
-                        <form>
-                            <input type="text" placeholder="Nome" />
+                        <form onSubmit={handleSubmit(onSubmit)} >
+                            <input type="text" placeholder="Nome" {...register("name")} />
 
-                            <input type="email" placeholder="Email" />
+                            <input type="email" placeholder="Email" {...register("email")} />
 
-                            <input type="password" placeholder="Senha" />
+                            <input type="password" placeholder="Senha" {...register("password")} />
 
                             <button type="submit">
                                 Cadastre-se
                             </button>
                         </form>
 
-                        <p>Esqueceu a senha?</p>
+                        <p>Já tem uma conta? 
+                            <Link to="/login">
+                                Entrar
+                            </Link>
+                        </p>
                     </div>
 
                     <Authenticates>

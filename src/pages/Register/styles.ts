@@ -104,6 +104,13 @@ export const Main = styled.main`
         font-size: 1.1rem;
 
         color: var(--text-body);
+
+        a {
+            margin-left: 0.5rem;
+
+            color: var(--blue-light);
+            font-weight: 600;
+        }
     }
 
 `

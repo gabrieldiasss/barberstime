@@ -50,50 +50,91 @@ export const Main = styled.main`
         font-size: 1.7rem;
     }
 
-    form {
+    div {
 
-        margin-top: 2rem;
+        form {
 
-        display: flex;
-        flex-direction: column;
+            margin-top: 2rem;
 
-        input {
-            width: 100%;
-            height: 3.8rem;
+            display: flex;
+            flex-direction: column;
 
-            padding: 0 2rem;
+            input {
+                width: 100%;
+                height: 3.8rem;
 
-            box-shadow: 0 3px 15px rgba(0,0,0,0.25);
+                padding: 0 2rem;
 
-            border: 0;
-            outline: 0;
+                box-shadow: 0 3px 15px rgba(0,0,0,0.25);
 
-            border-radius: 0.3rem;
+                border: 0;
+                outline: 0;
 
-            & + input {
-                margin-top: 1.8rem;
+                border-radius: 0.3rem;
+
+                & + input {
+                    margin-top: 1.8rem;
+                }
+
             }
 
         }
-        
+
     }
 
     button {
+        
         margin-top: 1.8rem;
+
         height: 3.6rem;
 
         box-shadow: 0 3px 10px rgba(0,0,0,0.25);
 
         font-size: 1.8rem;
 
-        background: #3B63FE;
+        background: var(--blue-light);
 
         color: #fff;
 
         border-radius: 0.3rem;
         border: 0;
-        
-    }
+
+        @keyframes ldio-zbpv5ybpu8e {
+            0% { transform: translate(-50%,-50%) rotate(0deg); }
+            100% { transform: translate(-50%,-50%) rotate(360deg); }
+        }
+
+        .ldio-zbpv5ybpu8e div {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            border: 4px solid #ffffff;
+            border-top-color: transparent;
+            border-radius: 50%;
+        }
+        .ldio-zbpv5ybpu8e div {
+            animation: ldio-zbpv5ybpu8e 1.3513513513513513s linear infinite;
+            top: 50px;
+            left: 50px
+        }
+        .loadingio-spinner-rolling-yi8phtw2ml {
+            width: 51px;
+            height: 51px;
+            display: inline-block;
+            overflow: hidden;
+            background: rgba(NaN, NaN, NaN, 0);
+        }
+        .ldio-zbpv5ybpu8e {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform: translateZ(0) scale(0.51);
+            backface-visibility: hidden;
+            transform-origin: 0 0; /* see note above */
+        }
+        .ldio-zbpv5ybpu8e div { box-sizing: content-box; }
+                
+            }
 
     p {
         display: flex;
@@ -104,6 +145,13 @@ export const Main = styled.main`
         font-size: 1.1rem;
 
         color: var(--text-body);
+
+        a {
+            margin-left: 0.5rem;
+
+            color: var(--blue-light);
+            font-weight: 600;
+        }
     }
 
 `
@@ -149,3 +197,4 @@ export const Authenticates = styled.div`
         margin: 1rem 0;
     }
 `
+
