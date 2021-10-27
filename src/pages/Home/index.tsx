@@ -8,6 +8,7 @@ export function Home() {
     useEffect(() => {
         axios.get("https://login-api-gabriel.herokuapp.com/project", {
             headers: {
+                
                 Authorization: `Bearer ${localStorage.getItem("accessToken")}`
             }
         })
