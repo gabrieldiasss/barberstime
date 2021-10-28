@@ -7,7 +7,7 @@ export function InicialPage() {
         <Container>
 
             <Top>
-                <h1><span>time</span>forbarber</h1>
+                <h1><span>barbers</span>club</h1>
             </Top>
 
                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 290">

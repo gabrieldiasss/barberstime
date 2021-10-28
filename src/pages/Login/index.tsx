@@ -10,6 +10,7 @@ import { FcGoogle } from "react-icons/fc";
 import { BsArrow90DegLeft } from "react-icons/bs"
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
+
 import { useState } from 'react';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -67,7 +68,7 @@ export function Login() {
                     </IconContext.Provider>
                     
                     <header>
-                        <h1><span>time</span>forbarber</h1>
+                        <h1><span>barbers</span>club</h1>
                     </header>
                 </Top>
 

@@ -178,7 +178,6 @@ export const Main = styled.main`
             height: 3.3rem;
         }
     }
-
     
 }
 
