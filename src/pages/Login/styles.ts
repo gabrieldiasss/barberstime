@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const Top = styled.div`
 
-
     background: var(--blue-light);
 
     .react-icons {
@@ -25,10 +24,10 @@ export const Top = styled.div`
 
             margin-top: 3rem;
             color: #fff;
-            font-size: 3rem;
+            font-size: 3.4rem;
 
             @media(max-width: 346px) {
-                font-size: 2.6rem;
+                font-size: 3rem;
             }
 
             span {

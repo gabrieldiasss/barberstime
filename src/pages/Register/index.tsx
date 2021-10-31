@@ -59,7 +59,7 @@ export function Register() {
                         </IconContext.Provider>
                     
                     <header>
-                        <h1><span>barbers</span>club</h1>
+                        <h1><span>barbers</span>time</h1>
                     </header>
                 </Top>
                 
