@@ -1,6 +1,5 @@
 import { IconContext } from 'react-icons'
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs'
-import { Barbers } from '../../Interfaces'
 
 import { StarsSection } from './styles'
 

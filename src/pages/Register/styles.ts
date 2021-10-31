@@ -100,6 +100,41 @@ export const Main = styled.main`
 
         border-radius: 0.3rem;
         border: 0;
+
+        @keyframes ldio-zbpv5ybpu8e {
+            0% { transform: translate(-50%,-50%) rotate(0deg); }
+            100% { transform: translate(-50%,-50%) rotate(360deg); }
+        }
+
+        .ldio-zbpv5ybpu8e div {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            border: 4px solid #ffffff;
+            border-top-color: transparent;
+            border-radius: 50%;
+        }
+        .ldio-zbpv5ybpu8e div {
+            animation: ldio-zbpv5ybpu8e 1.3513513513513513s linear infinite;
+            top: 50px;
+            left: 50px
+        }
+        .loadingio-spinner-rolling-yi8phtw2ml {
+            width: 51px;
+            height: 51px;
+            display: inline-block;
+            overflow: hidden;
+            background: rgba(NaN, NaN, NaN, 0);
+        }
+        .ldio-zbpv5ybpu8e {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform: translateZ(0) scale(0.51);
+            backface-visibility: hidden;
+            transform-origin: 0 0; /* see note above */
+        }
+        .ldio-zbpv5ybpu8e div { box-sizing: content-box; }
         
     }
 

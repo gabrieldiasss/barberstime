@@ -4,17 +4,9 @@ import { BiSearchAlt2 } from 'react-icons/bi'
 import { BarberCardItem } from "../../components/BarberCardItem"
 import { useEffect, useState } from 'react'
 import { api } from '../../services/api'
-
-interface Barbers {
-    id: number,
-    avatar_url: string,
-    name: string,
-    stars: number,
-}
+import { Barbers } from '../../Interfaces'
 
 export function Home() {
-
-    /* const { barbers, searchBarber, setSearchBarber } = useBarbers() */
 
     const [barbers, setBarbers] = useState<Barbers[]>([])
     const [searchBarber, setSearchBarber] = useState("")
@@ -30,9 +22,6 @@ export function Home() {
 
             api.get("/barbers", {
                 params,
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("accessToken")}`
-                }
             })
             .then((response) => {
                 setBarbers(response.data)
@@ -50,6 +39,7 @@ export function Home() {
             </Loading>
         )
     }
+
 
     return (
         <Container>

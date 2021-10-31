@@ -14,6 +14,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from 'react';
 
 type RegisterUsers = {
     name: string;
@@ -25,24 +26,34 @@ export function Register() {
 
     let history = useHistory()
 
+    const [loading, setLoading] = useState(false)
+
     const { register, handleSubmit} = useForm<RegisterUsers>()
 
-    const onSubmit: SubmitHandler<RegisterUsers> = (data) =>  axios.post("https://login-api-gabriel.herokuapp.com/auth/register", data) 
+    const onSubmit: SubmitHandler<RegisterUsers> = (data) => axios.post("https://login-api-gabriel.herokuapp.com/auth/register", data) 
     
     .then((response) => {
         const { data: { token } } = response
+
 
         if(response.data) {
             localStorage.setItem("accessToken", token )
             history.push("/home")
         }
 
+        setLoading(false)
+
     })
 
     .catch((err) => {
         toast.error(err?.response?.data?.error)
         toast.error(err?.response?.data?.errInvalid?.message)
+        setLoading(false)
     })
+
+    function handleLoading() {
+        setLoading(true)
+    }
 
     return (
         <>
@@ -82,8 +93,12 @@ export function Register() {
 
                             <input type="password" placeholder="Senha" {...register("password")} />
 
-                            <button type="submit">
-                                Cadastre-se
+                            <button type="submit" onClick={handleLoading}>
+                                { loading && <div className="loadingio-spinner-rolling-yi8phtw2ml"><div className="ldio-zbpv5ybpu8e">
+                                <div></div>
+                                </div></div>}
+
+                                {!loading && <>Cadastrar</> }
                             </button>
                         </form>
 

@@ -62,6 +62,31 @@ export const GlobalStyle = createGlobalStyle`
 
         border: 0;
     }
+
+    .react-modal-overlay {
+        background: rgba(0,0,0,0.5);
+
+
+        position: fixed;
+
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .react-modal-content {
+        width: 100%;
+        min-height: 525px;
+        max-width: 576px;
+    
+        background: #f9f9f9;
+        padding: 3rem 2rem;
+        border-radius: 3rem 3rem 0 0;
+    }
 `
 
 // FONTES

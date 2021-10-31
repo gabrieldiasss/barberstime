@@ -34,6 +34,7 @@ export const CardInfo = styled.div`
             font-family: Poppins;
             font-weight: 500;
             margin-bottom: 0.2rem;
+            color: #000;
         }
     }
 `

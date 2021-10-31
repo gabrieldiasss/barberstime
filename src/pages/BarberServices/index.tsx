@@ -9,24 +9,18 @@ import { api } from "../../services/api"
 import { BsArrow90DegLeft } from "react-icons/bs"
 
 import { Container, Top, Main, HeaderInfo, ServicesInfo, Loading } from './styles'
+import { BarberModal } from "../../components/BarbelModal"
+import { Barbers, Services } from "../../Interfaces"
 
-interface Barber {
-    id: number;
-    name: string,
-    avatar_url: string,
-    stars: number
-}
-
-interface Services {
-    name: string,
-    price: number
-}
 
 export function BarberServices() {
 
-    const [barber, setBarber] = useState({} as Barber)
+    const [barber, setBarber] = useState({} as Barbers)
     const [services, setServices] = useState<Services[]>([])
     const [loading, setLoading] = useState(false)
+    const [modalBarberIsOpen, setModalBarberIsOpen] = useState(false)
+
+    const [selectedService, setSelectedService] = useState({} as Services)
 
     const { id } = useParams<{ id: string }>()
 
@@ -53,6 +47,15 @@ export function BarberServices() {
         )
     }
 
+    function handleOpenModal(infos: Services): void {
+        setSelectedService(infos)
+        setModalBarberIsOpen(true)
+    }
+
+    function handleCloseModal() {
+        setModalBarberIsOpen(false)
+    }
+
     return (
         <Container>
 
@@ -74,13 +77,12 @@ export function BarberServices() {
                     </HeaderInfo>
                     
                 </header>
-                
-                
+
                 <ServicesInfo>
                     <h2>Escolher serviço</h2>
 
-                    {services.map((service, key ) => (
-                        <div className="servicesItem" key={key}>
+                    {services.map((service) => (
+                        <div className="servicesItem" key={service.id}>
                             <div >
                                 <p>{service.name}</p>
                                 <span>
@@ -91,13 +93,20 @@ export function BarberServices() {
                                 </span>  
                             </div>
 
-                            <button>Agendar</button>
-    
+                            <button onClick={() => handleOpenModal(service)} >Agendar</button>
+                            
                         </div>
                     ))}
                 </ServicesInfo>
-                
+
             </Main>
+            
+            <BarberModal 
+                isOpen={modalBarberIsOpen}
+                onRequestClose={handleCloseModal}
+                barber={barber}
+                service={selectedService}
+            />
 
         </Container>
     )

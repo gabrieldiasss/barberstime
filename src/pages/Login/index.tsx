@@ -33,6 +33,8 @@ export function Login() {
     .then((response) => {
         const { data: { token } } = response
 
+        console.log(response)
+
         if(response.data) {
             localStorage.setItem("accessToken", token )
             history.push("/home")
