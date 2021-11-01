@@ -5,7 +5,7 @@ export const Container = styled.div`
 `
 
 export const Top = styled.div`
-    height: 27vh;
+    height: 23vh;
     background-color: var(--blue);
 
     .react-icons {
@@ -70,7 +70,7 @@ export const ServicesInfo = styled.div`
                 margin-bottom: 0.3rem;
             }
 
-            span {
+            > span {
                 font-family: Poppins, sans-serif;
                 color: var(--blue);
             }

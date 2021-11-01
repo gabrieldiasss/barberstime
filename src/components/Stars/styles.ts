@@ -7,6 +7,7 @@ export const StarsSection = styled.div`
 
     span {
         margin-left: 0.4rem;
+        color: #000;
     }
     
 `
