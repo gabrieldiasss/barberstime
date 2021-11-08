@@ -35,12 +35,12 @@ export function Register() {
     .then((response) => {
         const { data: { token } } = response
 
-
         if(response.data) {
-            localStorage.setItem("accessToken", token )
+            localStorage.setItem("accessToken", token)
+            axios.defaults.headers.common['Authorization']= `Bearer ${token}`;
             history.push("/home")
+        
         }
-
         setLoading(false)
 
     })

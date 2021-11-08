@@ -64,3 +64,107 @@ export const CardServiceSelected = styled.div`
     }
 
 `
+
+export const CardDays = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1.4rem;
+
+    background-color: #fff;
+    border-radius: 0.6rem;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+
+    padding: 0.8rem 2rem;
+
+    display: block;
+    overflow-x: scroll;
+    
+    &::-webkit-scrollbar {
+        width: 10px;
+        height: 8px;
+        
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #bab8b5;
+        border-radius: 40px;
+    }
+
+`
+
+export const Month = styled.div`
+
+    display: flex;
+    align-items: center;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .arrow {
+        font-size: 2rem;
+        cursor: pointer;
+    }
+
+`
+
+export const Days = styled.div`
+    
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    margin-top: 2.8rem;
+    
+    div {
+        padding: 0.3rem;
+        border-radius: 0.2rem;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        cursor: pointer;
+    }
+`
+
+export const CardHours = styled.div`
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.4rem;
+
+    background-color: #fff;
+    border-radius: 0.6rem;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+
+    padding: 1rem 0;
+
+    overflow-x: scroll;
+
+    div {
+        
+        padding: 0.3rem 0.6rem;
+        border-radius: 0.4rem;
+
+        h2 {
+            font-family: Poppins;
+            font-weight: 500;
+            cursor: pointer;
+        }
+    }
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        height: 8px;
+        
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #bab8b5;
+        border-radius: 40px;
+    }
+`
+
+

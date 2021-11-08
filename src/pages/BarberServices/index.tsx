@@ -10,13 +10,13 @@ import { BsArrow90DegLeft } from "react-icons/bs"
 
 import { Container, Top, Main, HeaderInfo, ServicesInfo, Loading } from './styles'
 import { BarberModal } from "../../components/BarbelModal"
-import { Barbers, Services } from "../../Interfaces"
+import { Available, Barbers, Services } from "../../Interfaces"
 
 
 export function BarberServices() {
 
     const [barber, setBarber] = useState({} as Barbers)
-    const [services, setServices] = useState<Services[]>([])
+
     const [loading, setLoading] = useState(false)
     const [modalBarberIsOpen, setModalBarberIsOpen] = useState(false)
 
@@ -28,7 +28,6 @@ export function BarberServices() {
         api.get(`/barbers/${id}`)
         .then(response => {
             setBarber(response.data)
-            setServices(response.data.services)
             setLoading(true)
         })
         .catch(err => {
@@ -81,7 +80,7 @@ export function BarberServices() {
                 <ServicesInfo>
                     <h2>Escolher serviço</h2>
 
-                    {services.map((service) => (
+                    {barber.services.map((service) => (
                         <div className="servicesItem" key={service.id}>
                             <div >
                                 <p>{service.name}</p>

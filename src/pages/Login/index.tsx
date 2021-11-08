@@ -1,57 +1,26 @@
 import { Main, Authenticates, Top } from './styles'
 import { IconContext } from 'react-icons'
 
-import { useForm, SubmitHandler } from 'react-hook-form'
-
 import { GrFacebookOption } from "react-icons/gr";
 import { FaTwitter } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 import { BsArrow90DegLeft } from "react-icons/bs"
-import { Link, useHistory } from 'react-router-dom';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-import { useState } from 'react';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-type LoginUser = {
-    email: string;
-    password: string;
-}
+import { useUser } from '../../Contexts/useUser';
 
 export function Login() {
 
-    const { register, handleSubmit} = useForm<LoginUser>()
-
-    const [loading, setLoading] = useState(false) 
-
-    let history = useHistory()
-
-    const onSubmit: SubmitHandler<LoginUser> = (data) => axios.post("https://login-api-gabriel.herokuapp.com/auth/authenticate", data) 
-    .then((response) => {
-        const { data: { token } } = response
-
-        console.log(response)
-
-        if(response.data) {
-            localStorage.setItem("accessToken", token )
-            history.push("/home")
-        }
-
-        toast.success("Autenticação feita com sucesso")
-        setLoading(false)
-    })
-
-    .catch((err) => {
-        toast.error(err?.response?.data?.error)
-        toast.error(err?.response?.data?.errInvalid?.message)
-        setLoading(false)
-    })
+    const { loading, setLoading, register, handleSubmit, onSubmit } = useUser()
 
     function handleLoading() {
         setLoading(true)
+        console.log(loading)
     }
 
     return (

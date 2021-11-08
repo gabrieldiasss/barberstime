@@ -50,6 +50,7 @@ export const GlobalStyle = createGlobalStyle`
 
     h1, h2, h3, h4, h5, h6, strong {
         font-weight: 600;
+        font-family: Poppins;
     }
 
     a {
@@ -66,7 +67,6 @@ export const GlobalStyle = createGlobalStyle`
     .react-modal-overlay {
         background: rgba(0,0,0,0.5);
 
-
         position: fixed;
 
         top: 0;
@@ -80,8 +80,8 @@ export const GlobalStyle = createGlobalStyle`
 
     .react-modal-content {
         width: 100%;
-        min-height: 525px;
-        max-width: 576px;
+        min-height: 75%;
+        max-width: 100%;
     
         background: #f9f9f9;
         padding: 3rem 2rem;

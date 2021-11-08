@@ -1,20 +1,20 @@
 import { Container, InputFake, Loading } from './styles'
 
-import { useHistory } from 'react-router-dom'
-
 import { BiSearchAlt2 } from 'react-icons/bi'
 import { BarberCardItem } from "../../components/BarberCardItem"
 import { useEffect, useState } from 'react'
 import { api } from '../../services/api'
 import { Barbers } from '../../Interfaces'
+import { useUser } from '../../Contexts/useUser'
+
 
 export function Home() {
+
+    const { userState } = useUser()
 
     const [barbers, setBarbers] = useState<Barbers[]>([])
     const [searchBarber, setSearchBarber] = useState("")
     const [loading, setLoading] = useState(false)
-
-    let history = useHistory()
 
     useEffect(() => {
 
@@ -28,7 +28,8 @@ export function Home() {
                 params,
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("accessToken")}`
-                }
+                },
+
             })
             .then((response) => {
                 setBarbers(response.data)
@@ -36,6 +37,10 @@ export function Home() {
             })
 
     }, [searchBarber])
+
+   
+    console.log(userState.name)
+    
 
     if(!loading) {
         return (
@@ -46,12 +51,6 @@ export function Home() {
             </Loading>
         )
     }
-
-    function handleLogout() {
-        localStorage.removeItem("accessToken")
-        history.push("/")
-    }
-
 
     return (
         <Container>
@@ -68,7 +67,7 @@ export function Home() {
 
             {barbers.length === 0 && <h3 style={{marginTop: "25px"}} >Barbeiro não encontrado =(</h3>}
 
-            <button onClick={handleLogout} >logout</button>
+            
 
         </Container>
     )
