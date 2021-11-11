@@ -1,11 +1,11 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch } from 'react-router-dom'
 
 import { InicialPage } from './pages/InicialPage';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Home } from './pages/Home'
 import { BarberServices } from './pages/BarberServices';
-import { Appointments } from './pages/Appointments/indext';
+import { Appointments } from './pages/Appointments';
 import { Profile } from './pages/Profile';
 
 import PrivateRoute from './private/PrivateRoute.tsx'

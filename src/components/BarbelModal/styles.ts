@@ -85,7 +85,6 @@ export const CardDays = styled.div`
     &::-webkit-scrollbar {
         width: 10px;
         height: 8px;
-        
     }
 
     &::-webkit-scrollbar-thumb {
@@ -102,6 +101,10 @@ export const Month = styled.div`
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
+
+    h2 {
+        font-size: 1.4rem;
+    }
 
     .arrow {
         font-size: 2rem;
@@ -157,8 +160,7 @@ export const CardHours = styled.div`
 
     &::-webkit-scrollbar {
         width: 10px;
-        height: 8px;
-        
+        height: 8px; 
     }
 
     &::-webkit-scrollbar-thumb {

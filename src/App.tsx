@@ -1,17 +1,16 @@
-import { UserProvider } from './Contexts/useUser';
 import { Routes } from './Routes.js';
 
 import { GlobalStyle } from './styles/global'
-
+import { AppointmentsProviders } from './Contexts/useAppointments'
 
 function App() {
 
 	return (
-		<UserProvider>
+		<AppointmentsProviders>
 			<GlobalStyle />
 
 			<Routes />
-		</UserProvider>
+		</AppointmentsProviders>
 	);
 }
 

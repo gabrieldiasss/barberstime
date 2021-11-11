@@ -6,7 +6,9 @@ import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri'
 
 import { Main, CardBarber, CardServiceSelected, CardDays, CardHours, Month, Days} from './styles'
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useHistory } from 'react-router';
+import { toast, ToastContainer } from 'react-toastify';
+import { useAppointment } from '../../Contexts/useAppointments';
 
 Modal.setAppElement('#root');
 
@@ -23,16 +25,36 @@ interface ListDays {
     number: number,
 }
 
-interface Schedules {
-    barber: Barbers[],
-    service: string,
-    selectedYear: string,
-    selectedMonth: string,
-    selectedDay: string,
-    selectedHour: string
-}
+const months = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio", 
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro"
+];
+
+const days = [
+    "Dom",
+    "Seg",
+    "Ter",
+    "Qua",
+    "Qui",
+    "Sex",
+    "Sab"
+];
 
 export function BarberModal({isOpen, onRequestClose, barber, service}: BarberModalProps) {
+
+    let history = useHistory()
+
+    const { appointments, createAppointment } = useAppointment()
 
     const [selectedYear, setSelectedYear] = useState(0)
     const [selectedMonth, setSelectedMonth] = useState(0)
@@ -43,30 +65,8 @@ export function BarberModal({isOpen, onRequestClose, barber, service}: BarberMod
     const [listDays, setListDays] = useState<ListDays[]>([])
     const [listHours, setListHours] = useState<Available[] | string[]>([])
 
-    const months = [
-        "Janeiro",
-        "Fevereiro",
-        "Março",
-        "Abril",
-        "Maio", 
-        "Junho",
-        "Julho",
-        "Agosto",
-        "Setembro",
-        "Outubro",
-        "Novembro",
-        "Dezembro",
-    ]
-
-    const days = [
-        "Dom",
-        "Seg",
-        "Ter",
-        "Qua",
-        "Qui",
-        "Sex",
-        "Sab",
-    ]
+    let userId = localStorage.getItem("infoUserId")
+    let nameUser = localStorage.getItem("infoUserName")
 
     useEffect(() => {
         if(selectedDay > 0) {
@@ -126,8 +126,8 @@ export function BarberModal({isOpen, onRequestClose, barber, service}: BarberMod
 
     useEffect(() => {
         let today = new Date()
-        setSelectedYear(today.getFullYear())
-        setSelectedMonth(today.getMonth())
+        setSelectedYear( today.getFullYear() )
+        setSelectedMonth( today.getMonth() )
         setSelectedDay(today.getDate())
     }, [])
 
@@ -149,25 +149,30 @@ export function BarberModal({isOpen, onRequestClose, barber, service}: BarberMod
 
      async function handleFinishSchedule() {
 
-       if ( barber.id && service != null && selectedYear > 0 && selectedMonth > 0 && selectedDay > 0 && selectedHour != null) {
+        /* if (appointments.length >= 1 ) {
+             toast.error("Não é possível ter mais de um horário agendado")
+        } else { */
+            if ( barber.id && service != null && selectedYear > 0 && selectedMonth > 0 && selectedDay > 0 && selectedHour != null) {
 
-        const data = {
-            barber,
-            service, 
-            selectedYear, 
-            selectedMonth, 
-            selectedDay, 
-            selectedHour,
-            
-        }
-
-        const response = await axios.post("http://localhost:5000/schedules", data)
-        const dataConsole = await response.data
-        console.log(dataConsole)
-
-       } else {
-            console.log("erro")
-       }
+                let selectedMonth1 = selectedMonth + 1
+    
+                await createAppointment({
+                    barber,
+                    service, 
+                    selectedYear, 
+                    selectedMonth1, 
+                    selectedDay, 
+                    selectedHour,
+                    userId,
+                    nameUser
+                })
+    
+                history.push("/myappointments")
+                
+           } else {
+                toast.error("Selecione o horário corretamente.")
+           }
+        /* } */
    }
 
     return (
@@ -179,12 +184,13 @@ export function BarberModal({isOpen, onRequestClose, barber, service}: BarberMod
             className="react-modal-content"
         >
 
+            <ToastContainer autoClose={3000} />
+
             <Main>
                 <CardBarber>
                     <img src={barber.avatar_url} alt="" />
                     <h2>{barber.name}</h2>
                 </CardBarber>
-
                 <CardServiceSelected>
                     <h2>{service.name}</h2>
                     <h2>
@@ -201,7 +207,7 @@ export function BarberModal({isOpen, onRequestClose, barber, service}: BarberMod
                         <h2>{months[selectedMonth]} {selectedYear}</h2>
                         <RiArrowRightSLine className="arrow" onClick={handleLRightClick} />
                     </Month>
-                    
+
                     <Days >
                         {listDays.map((item, key) => (
                             <div
@@ -237,8 +243,8 @@ export function BarberModal({isOpen, onRequestClose, barber, service}: BarberMod
                             ))}
                     </CardHours>
                 }
-                
-                <button onClick={handleFinishSchedule} >Finalizar atendimento</button>
+
+                <button type="submit" onClick={handleFinishSchedule} >Finalizar atendimento</button>
             </Main>
             
         </Modal>

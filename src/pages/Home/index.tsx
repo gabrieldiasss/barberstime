@@ -1,16 +1,14 @@
 import { Container, InputFake, Loading } from './styles'
 
 import { BiSearchAlt2 } from 'react-icons/bi'
+
 import { BarberCardItem } from "../../components/BarberCardItem"
+import { BottomMenu } from '../../components/BottomMenu'
 import { useEffect, useState } from 'react'
 import { api } from '../../services/api'
 import { Barbers } from '../../Interfaces'
-import { useUser } from '../../Contexts/useUser'
-
 
 export function Home() {
-
-    const { userState } = useUser()
 
     const [barbers, setBarbers] = useState<Barbers[]>([])
     const [searchBarber, setSearchBarber] = useState("")
@@ -38,10 +36,6 @@ export function Home() {
 
     }, [searchBarber])
 
-   
-    console.log(userState.name)
-    
-
     if(!loading) {
         return (
             <Loading>
@@ -67,8 +61,7 @@ export function Home() {
 
             {barbers.length === 0 && <h3 style={{marginTop: "25px"}} >Barbeiro não encontrado =(</h3>}
 
-            
-
+            <BottomMenu />
         </Container>
     )
 }

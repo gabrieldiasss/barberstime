@@ -6,21 +6,56 @@ import { FaTwitter } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 import { BsArrow90DegLeft } from "react-icons/bs"
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { useUser } from '../../Contexts/useUser';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import axios from 'axios';
+
+type LoginUser = {
+    email: string;
+    password: string;
+}
 
 export function Login() {
 
-    const { loading, setLoading, register, handleSubmit, onSubmit } = useUser()
+    let history = useHistory()
+
+    const [loading, setLoading] = useState(false) 
+
+    const { register, handleSubmit} = useForm<LoginUser>()
+
+    const onSubmit: SubmitHandler<LoginUser> = (data) => axios.post("https://login-api-gabriel.herokuapp.com/auth/authenticate", data) 
+    .then((response) => {
+
+        console.log({ response })
+
+        const { data: { token, user } } = response
+
+        if(response.data) {
+            localStorage.setItem("accessToken", token)
+            localStorage.setItem("infoUserName", user.name)
+            localStorage.setItem("infoUserId", user._id)
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        }
+
+        history.push("/home")
+        
+        setLoading(false)
+    })
+    .catch((err) => {
+        toast.error(err?.response?.data?.error)
+        toast.error(err?.response?.data?.errInvalid?.message)
+        setLoading(false)
+    })
 
     function handleLoading() {
         setLoading(true)
         console.log(loading)
+
     }
 
     return (
@@ -45,7 +80,7 @@ export function Login() {
 
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 290">
-                    <path fill="#3B63FE" fill-opacity="1" d="M0,224L60,208C120,192,240,160,360,144C480,128,600,128,720,160C840,192,960,256,1080,277.3C1200,299,1320,277,1380,266.7L1440,256L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
+                    <path fill="#3B63FE" fillOpacity="1" d="M0,224L60,208C120,192,240,160,360,144C480,128,600,128,720,160C840,192,960,256,1080,277.3C1200,299,1320,277,1380,266.7L1440,256L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
                 </svg> 
             
                 {/* 3B63FE */}

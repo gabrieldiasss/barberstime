@@ -6,8 +6,6 @@ export const Container = styled.div`
     h1 {
         font-family: Poppins;
     }
-
-    
 `
 
 export const InputFake = styled.div`
@@ -154,6 +152,8 @@ export const Loading = styled.div`
 
     .ldio-6mzwot4130t div { box-sizing: content-box; }
 `
+
+
 
     
 

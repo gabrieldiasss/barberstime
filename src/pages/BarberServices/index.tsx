@@ -10,8 +10,7 @@ import { BsArrow90DegLeft } from "react-icons/bs"
 
 import { Container, Top, Main, HeaderInfo, ServicesInfo, Loading } from './styles'
 import { BarberModal } from "../../components/BarbelModal"
-import { Available, Barbers, Services } from "../../Interfaces"
-
+import { Barbers, Services } from "../../Interfaces"
 
 export function BarberServices() {
 
