@@ -18,13 +18,15 @@ export const Main = styled.div`
             margin-top: 2rem;
         }
 
-        &.btn-no {
-            background: #ff4444;
-        }
+        
 
         &.btn-cancel {
            
             background: #00c851;
         }
     }
+`
+
+export const ButtonNo = styled.button`
+    background: #ff4444; 
 `

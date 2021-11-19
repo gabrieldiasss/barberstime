@@ -3,6 +3,20 @@ import styled from 'styled-components'
 export const Container = styled.div`
     padding: 2.4rem 2.8rem;
 
+    @media(min-width: 600px) {
+        margin: 0 auto;
+        max-width: 550px;
+        width: 90%;
+    }
+
+    @media(min-width: 800px) {
+        max-width: 700px;
+    }
+
+    @media(min-width: 1024px) {
+        max-width: 800px;
+    }
+
     h1 {
         font-family: Poppins;
     }

@@ -4,14 +4,6 @@ export const Top = styled.div`
 
     background: var(--blue-light);
 
-    .react-icons {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        font-size: 25px;
-        color: #fff;
-    }
-
     header {
         height: 20vh;
         
@@ -28,6 +20,10 @@ export const Top = styled.div`
                 font-size: 3rem;
             }
 
+            @media(min-width: 500px) {
+                margin-top: 0;
+            }
+
             span {
                 font-weight: 700;
             }
@@ -36,9 +32,27 @@ export const Top = styled.div`
 
 `
 
+export const Svg = styled.div`
+
+    @media(min-width: 500px) {
+        display: none;
+    }
+
+`
+
 export const Main = styled.main`
 
     padding: 2rem 2.6rem;
+
+    @media(min-width: 500px) {
+        margin: 0 auto;
+        max-width: 500px;
+    }
+
+    @media(min-width: 1440px) {
+        margin: 3rem auto;
+        max-width: 600px;
+    }
 
     height: 60vh;
 
@@ -90,16 +104,26 @@ export const Main = styled.main`
         margin-top: 1.8rem;
         height: 3.6rem;
 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
         box-shadow: 0 3px 10px rgba(0,0,0,0.25);
 
         font-size: 1.8rem;
 
-        background: #3B63FE;
+        background: var(--blue-light);
 
         color: #fff;
 
         border-radius: 0.3rem;
         border: 0;
+
+        transition: filter 0.2s;
+
+        &:hover {
+            filter: brightness(0.95);
+        }
 
         @keyframes ldio-zbpv5ybpu8e {
             0% { transform: translate(-50%,-50%) rotate(0deg); }
@@ -116,8 +140,8 @@ export const Main = styled.main`
         }
         .ldio-zbpv5ybpu8e div {
             animation: ldio-zbpv5ybpu8e 1.3513513513513513s linear infinite;
+            left: 50px;
             top: 50px;
-            left: 50px
         }
         .loadingio-spinner-rolling-yi8phtw2ml {
             width: 51px;
@@ -175,56 +199,5 @@ export const Main = styled.main`
         }
     }
 
-    
 
-`
-
-export const Authenticates = styled.div`
-
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-
-    padding-top: 3rem;
-
-    span {
-        margin-bottom: 1rem;
-        position: relative;
-        color: #d5d5d5;
-
-        &::before, &::after {
-            content: '';
-
-            position: absolute;
-            height: 1px;
-
-            width: 70px;
-            bottom: 50%;
-
-            right: 50px;
-
-            background: var(--line);
-
-            @media(max-width: 355px) {
-                right: 30px;
-            }
-        }
-
-        &::after {
-            left: 50px;
-
-            @media(max-width: 355px) {
-                left: 30px;
-            }
-        }
-
-    }
-
-    > div {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-
-        margin: 1rem 0;
-    }
 `

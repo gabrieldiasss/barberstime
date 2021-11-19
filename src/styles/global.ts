@@ -25,12 +25,20 @@ export const GlobalStyle = createGlobalStyle`
     // font-size 16px (Desktop)
 
     html {
-        @media (max-width: 1080px) {
+        @media (max-width: 1440px) {
             font-size: 93.75%; // 15px
         }
 
         @media (max-width: 720px) {
             font-size: 87.5%; // 14px
+        }
+
+        @media(max-width: 400px) {
+            font-size: 81.125%;
+        }
+
+        @media(max-width: 350px) {
+            font-size: 75%;
         }
     }
 
@@ -41,6 +49,7 @@ export const GlobalStyle = createGlobalStyle`
 
         height: 100vh;
         width: 100vw;
+        overflow-x: hidden;
     }
 
     body, input, textarea, button {
@@ -65,7 +74,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .react-modal-overlay {
-        background: rgba(0,0,0,0.5);
+        background: rgba(0,0,0,0.25);
 
         position: fixed;
 
@@ -76,20 +85,36 @@ export const GlobalStyle = createGlobalStyle`
 
         display: flex;
         align-items: flex-end;
+
+        @media(min-width: 500px) {
+            align-items: center;
+        }
+
     }
 
     .react-modal-content {
         width: 100%;
-        height: 85vh;
-        max-width: 100%;
-    
+
+        @media(min-width: 500px) {
+            margin: 0 auto;
+            max-width: 700px;
+            width: 90%;
+            align-items: center;
+
+            border-radius: 2rem;
+        }
+
         background: #f9f9f9;
-        padding: 3rem 2rem;
+        padding: 2rem 2rem;
         border-radius: 3rem 3rem 0 0;
+
+        @media(max-width: 375px) {
+            padding: 3rem 1.4rem;
+        }
     }
 
     .react-modal-cancel-overlay {
-        background: rgba(0,0,0,0.5);
+        background: rgba(0,0,0,0.25);
 
         position: fixed;
         z-index: 3;
@@ -104,19 +129,27 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .react-modal-cancel-content {
+        
         display: flex;
         align-items: center;
-
+        justify-content: center;
         width: 90%;
-        height: 40%;
+        max-width: 600px;
 
         margin: 0 auto;
+
+        h2 {
+            text-align: center;
+        }
     
         background: #f9f9f9;
         padding: 3rem 2rem;
         border-radius: 2rem;
-    }
 
+        @media(max-width: 500px) {
+            width: 90%;
+        }
+    }
     
 `
 

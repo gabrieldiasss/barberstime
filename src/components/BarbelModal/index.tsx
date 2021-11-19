@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
 import { useAppointment } from '../../Contexts/useAppointments';
+import axios from 'axios';
 
 Modal.setAppElement('#root');
 
@@ -54,7 +55,7 @@ export function BarberModal({isOpen, onRequestClose, barber, service}: BarberMod
 
     let history = useHistory()
 
-    const { appointments, createAppointment } = useAppointment()
+    const { appointments, setAppointments } = useAppointment()
 
     const [selectedYear, setSelectedYear] = useState(0)
     const [selectedMonth, setSelectedMonth] = useState(0)
@@ -125,10 +126,18 @@ export function BarberModal({isOpen, onRequestClose, barber, service}: BarberMod
     }, [selectedMonth, selectedYear])
 
     useEffect(() => {
+        let id = localStorage.getItem("infoUserId")
+
         let today = new Date()
         setSelectedYear( today.getFullYear() )
         setSelectedMonth( today.getMonth() )
         setSelectedDay(today.getDate())
+
+        axios.get(`http://localhost:5000/schedules?userId=${id}`)
+        .then((response) => {
+            setAppointments(response.data)
+        })
+
     }, [])
 
    function handleLeftClick() {
@@ -149,14 +158,13 @@ export function BarberModal({isOpen, onRequestClose, barber, service}: BarberMod
 
      async function handleFinishSchedule() {
 
-        /* if (appointments.length >= 1 ) {
-             toast.error("Não é possível ter mais de um horário agendado")
-        } else { */
+         if (appointments.length === 0) {
+
             if ( barber.id && service != null && selectedYear > 0 && selectedMonth > 0 && selectedDay > 0 && selectedHour != null) {
 
                 let selectedMonth1 = selectedMonth + 1
-    
-                await createAppointment({
+               
+                const data = {
                     barber,
                     service, 
                     selectedYear, 
@@ -165,14 +173,20 @@ export function BarberModal({isOpen, onRequestClose, barber, service}: BarberMod
                     selectedHour,
                     userId,
                     nameUser
-                })
+                }
+
+                await axios.post("http://localhost:5000/schedules", data )
     
                 history.push("/myappointments")
-                
-           } else {
-                toast.error("Selecione o horário corretamente.")
-           }
-        /* } */
+
+                } else {
+                    toast.error("Selecione o horário corretamente.")
+                }
+
+         }  else {
+            toast.error("Não é possível agendar mais de um horário.")
+            console.log("Erro")
+        } 
    }
 
     return (

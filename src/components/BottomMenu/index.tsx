@@ -5,7 +5,7 @@ export function BottomMenu() {
 
     return (
         <BottomMenuSection>
-                <Link to="/home">
+                <Link to="/">
                     <HomeIcon />
                 </Link>
                 

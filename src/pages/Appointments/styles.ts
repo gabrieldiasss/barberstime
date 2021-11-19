@@ -1,7 +1,22 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+
     padding: 2.6rem 2.2rem;
+
+    @media(min-width: 600px) {
+        margin: 0 auto;
+        max-width: 550px;
+        width: 90%;
+    }
+
+    @media(min-width: 800px) {
+        max-width: 700px;
+    }
+
+    @media(min-width: 1024px) {
+        max-width: 800px;
+    }
 
     h4 {
         margin-top: 1.6rem;
@@ -33,12 +48,13 @@ export const CardAppointment = styled.div`
         gap: 1rem;
 
         img {
-            width: 70px;
-            height: 70px;
+            width: 4.75rem;
+            height: 4.75rem;
             border-radius: 50%;
         }
     }
 `
+
 export const CardService = styled.div`
     display: flex;
     align-items: center;
@@ -46,6 +62,7 @@ export const CardService = styled.div`
 
     margin-top: 1rem;
 `
+
 export const CardSchedules = styled.div`
     margin-top: 1rem;
     display: flex;
@@ -65,11 +82,10 @@ export const CardSchedules = styled.div`
 
 export const Loading = styled.div`
 
-height: 100vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-
 
      @keyframes ldio-6mzwot4130t {
 

@@ -4,8 +4,18 @@ export const Container = styled.div`
 
     padding: 2rem 2rem;
 
-    h1 {
+    @media(min-width: 600px) {
+        margin: 0 auto;
+        max-width: 550px;
+        width: 90%;
+    }
 
+    @media(min-width: 800px) {
+        max-width: 700px;
+    }
+
+    @media(min-width: 1024px) {
+        max-width: 800px;
     }
 `
 
@@ -24,8 +34,8 @@ export const CardProfile = styled.div`
     gap: 1.6rem;
 
     > img {
-        width: 100px;
-        height: 100px;
+        width: 6rem;
+        height: 6rem;
         border-radius: 50%;
     }
 

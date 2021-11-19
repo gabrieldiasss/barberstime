@@ -13,6 +13,12 @@ export const Card = styled.div`
 
     margin-top: 1.6rem;
 
+    transition: filter 0.2s;
+
+    &:hover {
+        filter: brightness(0.95);
+    }
+
 `
 export const CardInfo = styled.div`
 
@@ -20,8 +26,8 @@ export const CardInfo = styled.div`
     align-items: center;
 
     img {
-        width: 70px;
-        height: 70px;
+        width: 4.75rem;
+        height: 4.75rem;
         border-radius: 50%;
 
         margin-right: 1rem;

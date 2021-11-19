@@ -59,7 +59,7 @@ export function BarberServices() {
 
             <Top>
                 <IconContext.Provider value={{ className: "react-icons" }} >
-                            <Link to="/home" >
+                            <Link to="/" >
                                 <BsArrow90DegLeft />
                             </Link>
                         </IconContext.Provider>

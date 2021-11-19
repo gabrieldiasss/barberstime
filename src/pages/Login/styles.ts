@@ -4,14 +4,6 @@ export const Top = styled.div`
 
     background: var(--blue-light);
 
-    .react-icons {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        font-size: 25px;
-        color: #fff;
-    }
-
     header {
 
         height: 20vh;
@@ -30,6 +22,10 @@ export const Top = styled.div`
                 font-size: 3rem;
             }
 
+            @media(min-width: 500px) {
+                margin-top: 0;
+            }
+
             span {
                 font-weight: 700;
             }
@@ -38,9 +34,27 @@ export const Top = styled.div`
 
 `
 
+export const Svg = styled.div`
+
+    @media(min-width: 500px) {
+        display: none;
+    }
+
+`
+
 export const Main = styled.main`
 
     padding: 2rem 2.6rem;
+
+    @media(min-width: 500px) {
+        margin: 0 auto;
+        max-width: 500px;
+    }
+
+    @media(min-width: 1440px) {
+        margin: 3rem auto;
+        max-width: 600px;
+    }
 
     height: 60vh;
 
@@ -90,6 +104,10 @@ export const Main = styled.main`
 
     button {
         
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
         margin-top: 1.8rem;
 
         height: 3.6rem;
@@ -104,6 +122,12 @@ export const Main = styled.main`
 
         border-radius: 0.3rem;
         border: 0;
+
+        transition: filter 0.2s;
+
+        &:hover {
+            filter: brightness(0.95);
+        }
 
         @keyframes ldio-zbpv5ybpu8e {
             0% { transform: translate(-50%,-50%) rotate(0deg); }
@@ -177,59 +201,5 @@ export const Main = styled.main`
             height: 3.3rem;
         }
     }
-    
-}
 
 `
-
-export const Authenticates = styled.div`
-
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-
-    padding-top: 3rem;
-
-    span {
-        margin: 0 1rem 1rem 1rem;
-        position: relative;
-        color: #d5d5d5;
-
-        &::before, &::after {
-            content: '';
-
-            position: absolute;
-            height: 1px;
-
-            width: 70px;
-            bottom: 50%;
-
-            right: 50px;
-
-            @media(max-width: 355px) {
-                right: 30px;
-            }
-
-            background: var(--line);
-        }
-
-        &::after {
-            left: 50px;
-
-            @media(max-width: 355px) {
-                left: 30px;
-            }
-            
-        }
-
-    }
-
-    > div {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-
-        margin: 1rem 0;
-    }
-`
-

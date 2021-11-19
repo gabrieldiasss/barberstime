@@ -10,8 +10,8 @@ export const Top = styled.div`
 
     .react-icons {
         position: absolute;
-        top: 20px;
-        left: 20px;
+        top: 1.25rem;
+        left: 1.25rem;
         font-size: 25px;
         color: #fff;
     }
@@ -25,16 +25,37 @@ export const Main = styled.div`
 
     background-color: #f5f5f5;
 
+    @media(min-width: 600px) {
+        margin: 0 auto;
+        max-width: 500px;
+        width: 90%;
+    }
+
+    @media(min-width: 800px) {
+        margin: 0 auto;
+        max-width: 700px;
+        width: 90%;
+    }
+
+    @media(min-width: 1024px) {
+        margin: 0 auto;
+        max-width: 800px;
+        width: 90%;
+    }
+
+
+
     header {
 
         display: flex;
+        align-items: center;
         gap: 2rem;
 
         img {
-            width: 120px;
-            height: 120px;
+            width: 8rem;
+            height: 8rem;
             border-radius: 50%;
-            margin-top: -50px;
+            margin-top: -1rem;
         
         }
 
@@ -53,6 +74,7 @@ export const HeaderInfo = styled.div`
 export const ServicesInfo = styled.div`
     font-family: Raleway, sans-serif;
     margin-top: 3rem;
+    padding-bottom: 3rem;
     font-size: 1.2rem;
 
     .servicesItem {
@@ -81,8 +103,13 @@ export const ServicesInfo = styled.div`
             border-radius: 0.4rem;
             height: 2.2rem;
             padding: 0 2.6rem;
-            background: var(--blue);
+            background: var(--blue-light);
             color: #fff;
+
+            transition: filter 0.2s;
+            &:hover {
+                filter: brightness(0.95);
+            }
         }
     }
 

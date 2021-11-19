@@ -7,6 +7,7 @@ import { BottomMenu } from '../../components/BottomMenu'
 import { useEffect, useState } from 'react'
 import { api } from '../../services/api'
 import { Barbers } from '../../Interfaces'
+import { Navbar } from '../../components/Navbar'
 
 export function Home() {
 
@@ -47,21 +48,27 @@ export function Home() {
     }
 
     return (
-        <Container>
-            <h1>Escolha o seu barbeiro favorito</h1>
+        <>
+            <Navbar />
 
-            <InputFake>
-                <BiSearchAlt2 className="search-icon" />
-                <input type="text" value={searchBarber} onChange={(e) => setSearchBarber(e.target.value)} />
-            </InputFake>
+            <Container>
+            
+                <h1>Escolha o seu barbeiro favorito</h1>
 
-            {barbers.map(barber => (
-                <BarberCardItem key={barber.id} barber={barber}/>
-            ))}        
+                <InputFake>
+                    <BiSearchAlt2 className="search-icon" />
+                    <input type="text" value={searchBarber} onChange={(e) => setSearchBarber(e.target.value)} />
+                </InputFake>
 
-            {barbers.length === 0 && <h3 style={{marginTop: "25px"}} >Barbeiro não encontrado =(</h3>}
+                {barbers.map(barber => (
+                    <BarberCardItem key={barber.id} barber={barber}/>
+                ))}        
 
-            <BottomMenu />
-        </Container>
+                {barbers.length === 0 && <h3 style={{marginTop: "25px"}} >Barbeiro não encontrado =(</h3>}
+
+                <BottomMenu />
+            </Container>
+        </>
+        
     )
 }

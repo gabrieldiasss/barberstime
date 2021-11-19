@@ -5,7 +5,7 @@ export const Main = styled.main`
     button {
         width: 100%;
         height: 4rem;
-        background-color: var(--blue);
+        background-color: var(--blue-light);
 
         color: #fff;
         box-shadow: 0 5px 10px rgba(0,0,0,0.15);
@@ -15,6 +15,11 @@ export const Main = styled.main`
         font-size: 1.3rem;
 
         font-family: Poppins;
+
+        transition: filter 0.2s;
+        &:hover {
+            filter: brightness(0.9);
+        }
 
     }
    
@@ -77,7 +82,7 @@ export const CardDays = styled.div`
 
     box-shadow: 0 5px 15px rgba(0,0,0,0.25);
 
-    padding: 0.8rem 2rem;
+    padding: 0.6rem 1.4rem;
 
     display: block;
     overflow-x: scroll;
@@ -101,9 +106,19 @@ export const Month = styled.div`
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
+    gap: 0.1rem;
 
     h2 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
+
+        @media(max-width: 401px) {
+            font-size: 1.2rem;
+        }
+
+        @media(max-width: 373px) {
+            font-size: 1.1rem;
+        }
+
     }
 
     .arrow {
@@ -114,7 +129,7 @@ export const Month = styled.div`
 `
 
 export const Days = styled.div`
-    
+
     display: flex;
     align-items: center;
     gap: 1.1rem;
@@ -142,7 +157,7 @@ export const CardHours = styled.div`
 
     box-shadow: 0 5px 15px rgba(0,0,0,0.25);
 
-    padding: 1rem 0;
+    padding: 0.6rem 2rem 0;
 
     overflow-x: scroll;
 

@@ -3,30 +3,54 @@ import { BottomMenu } from "../../components/BottomMenu"
 import { Container, CardAppointment, CardService, CardSchedules, Loading} from './styles'
 
 import { useAppointment } from '../../Contexts/useAppointments'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BarbelModalCancelSchedule } from '../../components/BarbelModalCancelSchedule'
 import axios from "axios"
 import { toast, ToastContainer } from "react-toastify"
+import { Navbar } from "../../components/Navbar"
+import { Appointment } from "../../Interfaces"
 
 export function Appointments() {
 
-    const { appointments, setAppointments, loadingAppointments } = useAppointment()
-
+    const { appointments, setAppointments } = useAppointment()
     const [modalCancelIsOpen, setModalCancel] = useState(false)
 
-    function handleOpenModal() {
+    const [selectedCancel, setSelectedCancel] = useState({} as Appointment)
+
+    const [loadingAppointments, setLoadingAppointments] = useState(false)
+
+    function handleOpenModal(appointmentInfos: Appointment) {
         setModalCancel(true)
+        setSelectedCancel(appointmentInfos)
     }
 
     function handleCloseModal() {
         setModalCancel(false)
     }
 
-    async function handleCancelSchedule(id: number) {
+    useEffect(() => {
 
-        await axios.delete(`http://localhost:5000/schedules/${id}`)
+        let id = localStorage.getItem("infoUserId")
 
-        setAppointments(appointments.filter(schedule => schedule.id !== id))
+        axios.get(`http://localhost:5000/schedules?userId=${id}`)
+
+        .then((response) => {
+            setAppointments(response.data)
+            setLoadingAppointments(true)
+        })
+        .catch(err => {
+            console.log(err)
+            setLoadingAppointments(true)
+        })
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    function handleCancelSchedule(DeleteAppointmentById: number) {
+
+        axios.delete(`http://localhost:5000/schedules/${DeleteAppointmentById}`)
+
+        setAppointments(appointments.filter((schedule) => schedule.id !== DeleteAppointmentById))
 
         setModalCancel(false)
         toast.success("O agendamento foi cancelado.")
@@ -44,9 +68,12 @@ export function Appointments() {
     }
     
     return (
-        <Container>
+        <>
+         <Navbar />
 
-            <ToastContainer autoClose={3000} />
+         <ToastContainer autoClose={3000} />
+
+         <Container>
 
             <h1>Meus agendamentos</h1>
 
@@ -80,19 +107,22 @@ export function Appointments() {
                         </div>
                     </CardSchedules>
 
-                    <button onClick={handleOpenModal} >Cancelar agendamento</button>
+                    <button onClick={() => handleOpenModal(appointment)} >Cancelar agendamento</button>
 
                     <BarbelModalCancelSchedule
                         isOpen={modalCancelIsOpen}
                         onRequestClose={handleCloseModal}
                         handleCancelSchedule={handleCancelSchedule}
-                        appointment={appointment}
+                        selectedCancel={selectedCancel}
                     />
                 </CardAppointment>
             ))}
-            
+
             <BottomMenu />
 
-        </Container>
+            </Container>
+
+        </>
+       
     )
 }
