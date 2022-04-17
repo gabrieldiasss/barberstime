@@ -55,6 +55,8 @@ Essa parte do projeto já uma aplicação separada da outra, focado para a Admin
 ## Responsividade
 O projeto também está responsivo! A plataforma é adaptado para todos os dispositivos.
 
+![barberstime-9](https://user-images.githubusercontent.com/71296002/163703040-d8f2a3a9-9955-46bc-9aec-44cacd6ee1bf.gif)
+
 ### ⚠️ Mais informações sobre o projeto...
 * O projeto foi construído com ReactJS e integrado com Typescript. 
 * A autenticação foi feita com NodeJS e MongoDB.
