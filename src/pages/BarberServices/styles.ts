@@ -6,7 +6,7 @@ export const Container = styled.div`
 
 export const Top = styled.div`
     height: 23vh;
-    background-color: var(--blue);
+    background-color: var(--gray-850);
 
     .react-icons {
         position: absolute;
@@ -22,8 +22,6 @@ export const Main = styled.div`
     border-radius: 44rem;
 
     border-collapse: separate;
-
-    background-color: #f5f5f5;
 
     @media(min-width: 600px) {
         margin: 0 auto;
@@ -43,8 +41,6 @@ export const Main = styled.div`
         width: 90%;
     }
 
-
-
     header {
 
         display: flex;
@@ -56,9 +52,7 @@ export const Main = styled.div`
             height: 8rem;
             border-radius: 50%;
             margin-top: -1rem;
-        
         }
-
     }
 `
 
@@ -66,16 +60,24 @@ export const HeaderInfo = styled.div`
 
     h2 {
         margin: 0.5rem 0 0.2rem 0;
+        color: #fff;
     }
    
 `
-
 
 export const ServicesInfo = styled.div`
     font-family: Raleway, sans-serif;
     margin-top: 3rem;
     padding-bottom: 3rem;
     font-size: 1.2rem;
+
+    h1 {
+        color: #fff;
+    }
+
+    h2 {
+        color: #fff;
+    }
 
     .servicesItem {
         margin-top: 1.4rem;
@@ -90,20 +92,20 @@ export const ServicesInfo = styled.div`
                 font-size: 1.3rem;
                 font-weight: 600;
                 margin-bottom: 0.3rem;
+                color: #fff;
             }
 
             > span {
                 font-family: Poppins, sans-serif;
-                color: var(--blue);
+                color: var(--orange-500);
             }
-            
         }
 
         button {
             border-radius: 0.4rem;
             height: 2.2rem;
             padding: 0 2.6rem;
-            background: var(--blue-light);
+            background: var(--orange-500);
             color: #fff;
 
             transition: filter 0.2s;
@@ -112,11 +114,9 @@ export const ServicesInfo = styled.div`
             }
         }
     }
-
 `
 
 export const Loading = styled.div`
-
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -139,7 +139,7 @@ export const Loading = styled.div`
         width: 10px;
         height: 10px;
         border-radius: 50%;
-        background: #3b4ce6;
+        background: #FE9102;
         animation: ldio-6mzwot4130t 1s linear infinite;
         }.ldio-6mzwot4130t div:nth-child(1) > div {
         left: 148px;

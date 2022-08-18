@@ -14,9 +14,8 @@ export function BarberCardItem({barber}: BarberProps) {
 
     return (
         <>
-
             <Link to={{pathname: `/services/${barber.id}`}}>
-                <Card >
+                <Card>
                     <CardInfo>
                         <img src={barber.avatar_url} alt={barber.name}  />
 

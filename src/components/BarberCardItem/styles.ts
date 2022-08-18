@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Card = styled.div`
     width: 100%;
-    background-color: #fff;
+    background-color: var(--gray-850);
     border-radius: 0.3rem;
 
     display: flex;
@@ -40,7 +40,7 @@ export const CardInfo = styled.div`
             font-family: Poppins;
             font-weight: 500;
             margin-bottom: 0.2rem;
-            color: #000;
+            color: #fff;
         }
     }
 `

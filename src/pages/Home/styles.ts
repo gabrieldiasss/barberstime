@@ -19,6 +19,7 @@ export const Container = styled.div`
 
     h1 {
         font-family: Poppins;
+        color: #fff;
     }
 `
 
@@ -26,7 +27,9 @@ export const InputFake = styled.div`
     margin-top: 1.8rem;
     display: flex;
     align-items: center;
-    background: #fff;
+    
+    background: var(--gray-850);
+    
 
     height: 3.8rem;
     padding: 0 2rem;
@@ -36,15 +39,17 @@ export const InputFake = styled.div`
 
     .search-icon {
         font-size: 20px;
-        color: var(--blue-light);
+        color: var(--orange-500);
         margin-right: 1rem;
     }
 
     input {
         border: 0;
         outline: 0;
+        background: none;
 
         font-size: 1.2rem;
+        color: var(--gray-450);
     }
 
 `
@@ -73,7 +78,7 @@ export const Loading = styled.div`
         width: 17px;
         height: 17px;
         border-radius: 50%;
-        background: #3b4ce6;
+        background: #FE9102;
         animation: ldio-6mzwot4130t 1s linear infinite;
         }.ldio-6mzwot4130t div:nth-child(1) > div {
         left: 148px;
@@ -169,5 +174,5 @@ export const Loading = styled.div`
 
 
 
-    
+
 

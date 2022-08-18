@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 
 export const Header = styled.header`
-    background-color: var(--blue);
+    background-color: var(--orange-500);
 
     @media(max-width: 500px) {
         display: none;
     }
 `
+
 export const Container = styled.div`
     display: flex;
     align-items: center;

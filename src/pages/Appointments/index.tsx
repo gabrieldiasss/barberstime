@@ -13,6 +13,7 @@ import { Appointment } from "../../Interfaces"
 export function Appointments() {
 
     const { appointments, setAppointments } = useAppointment()
+    
     const [modalCancelIsOpen, setModalCancel] = useState(false)
 
     const [selectedCancel, setSelectedCancel] = useState({} as Appointment)

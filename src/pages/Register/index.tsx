@@ -22,30 +22,30 @@ export function Register() {
 
     const [loading, setLoading] = useState(false)
 
-    const { register, handleSubmit} = useForm<RegisterUsers>()
+    const { register, handleSubmit } = useForm<RegisterUsers>()
 
-    const onSubmit: SubmitHandler<RegisterUsers> = (data) => axios.post("https://login-api-gabriel.herokuapp.com/auth/register", data) 
-    
-    .then((response) => {
-        const { data: { token, user } } = response
+    const onSubmit: SubmitHandler<RegisterUsers> = (data) => axios.post("https://api-braga.herokuapp.com/api/register", data)
 
-        if(response.data) {
-            localStorage.setItem("accessToken", token)
-            localStorage.setItem("infoUserName", user.name)
-            localStorage.setItem("infoUserId", user._id)
-            axios.defaults.headers.common['Authorization']= `Bearer ${token}`;
-            history.push("/")
-        
-        }
-        setLoading(false)
+        .then((response) => {
+            const { data: { token, user } } = response
 
-    })
+            if (response.data) {
+                localStorage.setItem("accessToken", token)
+                localStorage.setItem("infoUserName", user.name)
+                localStorage.setItem("infoUserId", user.id)
+                axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                history.push("/")
+            }
 
-    .catch((err) => {
-        toast.error(err?.response?.data?.error)
-        toast.error(err?.response?.data?.errInvalid?.message)
-        setLoading(false)
-    })
+            setLoading(false)
+
+        })
+
+        .catch((err) => {
+            toast.error(err?.response?.data?.message)
+            /* toast.error(err?.response?.data?.message) */
+            setLoading(false)
+        })
 
     function handleLoading() {
         setLoading(true)
@@ -53,57 +53,53 @@ export function Register() {
 
     return (
         <>
-                <Top>
+            <Top>
 
                 <ToastContainer
                     autoClose={3000}
                 />
 
-                    
-                    <header>
-                        <h1><span>barbers</span>time</h1>
-                    </header>
-                </Top>
-                
-                <Svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 290">
-                        <path fill="#3B63FE" fillOpacity="1" d="M0,224L60,208C120,192,240,160,360,144C480,128,600,128,720,160C840,192,960,256,1080,277.3C1200,299,1320,277,1380,266.7L1440,256L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
-                    </svg> 
-                </Svg>
-                
-            
-                {/* 3B63FE */}
+                <header>
+                    <h1><span>barbers</span>time</h1>
+                </header>
+            </Top>
 
-                <Main>
+            <Svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 290">
+                    <path fill="#29282D" fillOpacity="1" d="M0,224L60,208C120,192,240,160,360,144C480,128,600,128,720,160C840,192,960,256,1080,277.3C1200,299,1320,277,1380,266.7L1440,256L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
+                </svg>
+            </Svg>
 
-                    <div>
+            <Main>
 
-                        <h2>Crie sua conta</h2>
+                <div>
 
-                        <form onSubmit={handleSubmit(onSubmit)} >
-                            <input type="text" placeholder="Nome" {...register("name")} />
+                    <h2>Crie sua conta</h2>
 
-                            <input type="text" placeholder="Email" {...register("email")} />
+                    <form onSubmit={handleSubmit(onSubmit)} >
+                        <input type="text" placeholder="Nome" autoComplete="off" {...register("name")} />
 
-                            <input type="password" placeholder="Senha" {...register("password")} />
+                        <input type="text" placeholder="Email" autoComplete='off' {...register("email")} />
 
-                            <button type="submit" onClick={handleLoading}>
-                                { loading && <div className="loadingio-spinner-rolling-yi8phtw2ml"><div className="ldio-zbpv5ybpu8e">
+                        <input type="password" placeholder="Senha" {...register("password")} />
+
+                        <button type="submit" onClick={handleLoading}>
+                            {loading && <div className="loadingio-spinner-rolling-yi8phtw2ml"><div className="ldio-zbpv5ybpu8e">
                                 <div></div>
-                                </div></div>}
+                            </div></div>}
 
-                                {!loading && <>Cadastrar</> }
-                            </button>
-                        </form>
+                            {!loading && <>Cadastrar</>}
+                        </button>
+                    </form>
 
-                        <p>Já tem uma conta? 
-                            <Link to="/login">
-                                Entrar
-                            </Link>
-                        </p>
-                    </div>
-                
-                </Main>
+                    <p>Já tem uma conta?
+                        <Link to="/login">
+                            Entrar
+                        </Link>
+                    </p>
+                </div>
+
+            </Main>
 
         </>
     )

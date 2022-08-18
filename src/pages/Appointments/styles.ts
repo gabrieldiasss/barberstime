@@ -18,8 +18,13 @@ export const Container = styled.div`
         max-width: 800px;
     }
 
+    h1 {
+        color: #fff;
+    }
+
     h4 {
         margin-top: 1.6rem;
+        color: #fff;
     }
 
     button {
@@ -35,12 +40,13 @@ export const CardAppointment = styled.div`
 
     margin-top: 2rem;
 
-    background-color: #fff;
+    background-color: var(--gray-800);
     border-radius: 0.8rem;
 
     padding: 1rem 2rem;
 
     box-shadow: 5px 5px 10px rgb(0,0,0,0.15);
+    color: #fff;
 
     header {
         display: flex;
@@ -71,7 +77,7 @@ export const CardSchedules = styled.div`
 
     div {
         padding: 0.6rem;
-        background-color: var(--blue);
+        background-color: var(--orange-500);
         color: #fff;
         border-radius: 0.4rem;
 
@@ -104,7 +110,7 @@ export const Loading = styled.div`
         width: 17px;
         height: 17px;
         border-radius: 50%;
-        background: #3b4ce6;
+        background: #FE9102;
         animation: ldio-6mzwot4130t 1s linear infinite;
         }.ldio-6mzwot4130t div:nth-child(1) > div {
         left: 148px;

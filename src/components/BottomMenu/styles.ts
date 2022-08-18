@@ -12,7 +12,7 @@ export const BottomMenuSection = styled.div`
 
     padding: 8px min(46px, mx(10vw, 10px));
 
-    background: var(--blue-light);
+    background: var(--orange-500);
     width: 100%;
     display: flex;
     align-items: center;

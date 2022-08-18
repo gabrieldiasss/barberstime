@@ -2,10 +2,12 @@ import styled from 'styled-components'
 
 export const Main = styled.main`
 
+    color: #fff;
+
     button {
         width: 100%;
         height: 4rem;
-        background-color: var(--blue-light);
+        background-color: var(--orange-500);
 
         color: #fff;
         box-shadow: 0 5px 10px rgba(0,0,0,0.15);
@@ -30,7 +32,7 @@ export const CardBarber = styled.div`
     align-items: center;
     margin-bottom: 1.4rem;
 
-    background-color: #fff;
+    background-color: var(--gray-800);
     border-radius: 0.6rem;
 
     box-shadow: 0 5px 15px rgba(0,0,0,0.25);
@@ -53,7 +55,7 @@ export const CardServiceSelected = styled.div`
     justify-content: space-between;
     margin-bottom: 1.4rem;
 
-    background-color: #fff;
+    background-color: var(--gray-800);
     border-radius: 0.8rem;
 
     box-shadow: 0 5px 15px rgba(0,0,0,0.25);
@@ -77,7 +79,7 @@ export const CardDays = styled.div`
     flex-direction: column;
     margin-bottom: 1.4rem;
 
-    background-color: #fff;
+    background-color: var(--gray-800);
     border-radius: 0.6rem;
 
     box-shadow: 0 5px 15px rgba(0,0,0,0.25);
@@ -142,6 +144,10 @@ export const Days = styled.div`
         align-items: center;
         flex-direction: column;
         cursor: pointer;
+
+        /* h2, h3 {
+            background-color: ;
+        } */
     }
 `
 
@@ -152,7 +158,7 @@ export const CardHours = styled.div`
     justify-content: center;
     margin-bottom: 1.4rem;
 
-    background-color: #fff;
+    background-color: var(--gray-800);
     border-radius: 0.6rem;
 
     box-shadow: 0 5px 15px rgba(0,0,0,0.25);

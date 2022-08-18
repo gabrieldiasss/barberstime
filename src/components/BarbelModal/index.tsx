@@ -55,6 +55,7 @@ export function BarberModal({isOpen, onRequestClose, barber, service}: BarberMod
 
     let history = useHistory()
 
+
     const { appointments, setAppointments } = useAppointment()
 
     const [selectedYear, setSelectedYear] = useState(0)
@@ -165,7 +166,7 @@ export function BarberModal({isOpen, onRequestClose, barber, service}: BarberMod
                 let selectedMonth1 = selectedMonth + 1
                
                 const data = {
-                    barber,
+                    barber: barber.name,
                     service, 
                     selectedYear, 
                     selectedMonth1, 
@@ -175,7 +176,7 @@ export function BarberModal({isOpen, onRequestClose, barber, service}: BarberMod
                     nameUser
                 }
 
-                await axios.post("http://localhost:5000/schedules", data )
+                await axios.post("http://localhost:5000/schedules", data)
     
                 history.push("/myappointments")
 
@@ -227,8 +228,8 @@ export function BarberModal({isOpen, onRequestClose, barber, service}: BarberMod
                             <div
                                 key={key} 
                                 style={{ opacity: item.status ? 1 : 0.5, 
-                                    backgroundColor: item.number === selectedDay ? '#3B4CE6' : '#fff',
-                                    color: item.number === selectedDay ? '#fff' : '#000'
+                                    backgroundColor: item.number === selectedDay ? '#F19108' : '#29282D',
+                                    color: item.number === selectedDay ? '#fff' : '#fff'
                                 }} 
                                 onClick={() => item.status ? setSelectedDay(item.number) : null} 
                             >
@@ -248,8 +249,8 @@ export function BarberModal({isOpen, onRequestClose, barber, service}: BarberMod
                                     key={key} 
                                     onClick={() => setSelectedHour(item)} 
                                     style={{
-                                        backgroundColor: item === selectedHour ? '#3B4CE6' : '#fff',
-                                        color: item === selectedHour ? '#fff' : '#000'
+                                        backgroundColor: item === selectedHour ? '#F19108' : '#29282D',
+                                        color: item === selectedHour ? '#fff' : '#fff'
                                     }}
                                 >
                                     <h2>{item}</h2>

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Top = styled.div`
 
-    background: var(--blue-light);
+    background: var(--gray-800);
 
     header {
 
@@ -72,6 +72,7 @@ export const Main = styled.main`
 
     h2 {
         font-size: 1.7rem;
+        color: #fff;
     }
 
     form {
@@ -91,6 +92,9 @@ export const Main = styled.main`
 
             border: 0;
             outline: 0;
+
+            color: var(--gray-500);
+            background: var(--gray-850);
 
             border-radius: 0.3rem;
 
@@ -116,7 +120,7 @@ export const Main = styled.main`
 
         font-size: 1.8rem;
 
-        background: var(--blue-light);
+        background: var(--orange-500);
 
         color: #fff;
 
@@ -142,11 +146,13 @@ export const Main = styled.main`
             border-top-color: transparent;
             border-radius: 50%;
         }
+
         .ldio-zbpv5ybpu8e div {
             animation: ldio-zbpv5ybpu8e 1.3513513513513513s linear infinite;
             top: 50px;
             left: 50px
         }
+
         .loadingio-spinner-rolling-yi8phtw2ml {
             width: 51px;
             height: 51px;
@@ -179,7 +185,7 @@ export const Main = styled.main`
         a {
             margin-left: 0.5rem;
 
-            color: var(--blue-light);
+            color: var(--orange-500);
             font-weight: 600;
         }
     }

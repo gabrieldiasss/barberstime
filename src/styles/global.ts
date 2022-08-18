@@ -13,7 +13,16 @@ export const GlobalStyle = createGlobalStyle`
 
         --line: #d5d5d5;
 
-        --shape: #FFFFFF
+        --shape: #FFFFFF;
+
+        --orange-500: #FE9102;
+
+        --gray-900: #212025;
+        --gray-850: #2B2A2F;
+        --gray-800: #29282D;
+        
+        --gray-500: rgba(255, 255, 255, 0.3);
+        --gray-450: rgba(255, 255, 255, 0.6);
     }
 
     * {
@@ -45,11 +54,12 @@ export const GlobalStyle = createGlobalStyle`
     body {
         -webkit-font-smoothing: antialiased;
 
-        background: #F5F5F5;
+        background: #212025;
 
         height: 100vh;
         width: 100vw;
         overflow-x: hidden;
+        
     }
 
     body, input, textarea, button {
@@ -74,7 +84,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .react-modal-overlay {
-        background: rgba(0,0,0,0.25);
+        background: rgba(0,0,0,0.5);
 
         position: fixed;
 
@@ -104,7 +114,7 @@ export const GlobalStyle = createGlobalStyle`
             border-radius: 2rem;
         }
 
-        background: #f9f9f9;
+        background: var(--gray-900);
         padding: 2rem 2rem;
         border-radius: 3rem 3rem 0 0;
 
@@ -114,7 +124,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .react-modal-cancel-overlay {
-        background: rgba(0,0,0,0.25);
+        background: rgba(0,0,0,0.5);
 
         position: fixed;
         z-index: 3;
@@ -129,6 +139,8 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .react-modal-cancel-content {
+
+        color: #fff;
         
         display: flex;
         align-items: center;
@@ -142,7 +154,7 @@ export const GlobalStyle = createGlobalStyle`
             text-align: center;
         }
     
-        background: #f9f9f9;
+        background: var(--gray-800);
         padding: 3rem 2rem;
         border-radius: 2rem;
 

@@ -15,6 +15,7 @@
     "@types/react-router-dom": "^5.3.1",
     "@types/styled-components": "^5.1.15",
     "axios": "^0.24.0",
+    "caniuse-lite": "^1.0.30001332",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.17.5",

@@ -81,7 +81,7 @@ export function BarberServices() {
 
                     {barber.services.map((service) => (
                         <div className="servicesItem" key={service.id}>
-                            <div >
+                            <div>
                                 <p>{service.name}</p>
                                 <span>
                                     { new Intl.NumberFormat('pt-br', {
