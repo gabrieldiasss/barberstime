@@ -115,8 +115,6 @@ export function Appointments() {
     );
   }
 
-  console.log(appointment)
-
   return (
     <>
       <Navbar />
@@ -126,11 +124,7 @@ export function Appointments() {
       <Container>
         <h1>Meus agendamentos</h1>
 
-        {appointments.length === 0 && (
-          <h4>Você ainda não tem um horário marcado =(</h4>
-        )}
-
-        {appointments.map((info) => (
+        {appointments.length > 0 && appointments.map((info) => (
           <CardAppointment key={info.id}>
             <header>
               <img src={info.avatar_url} alt="" />
