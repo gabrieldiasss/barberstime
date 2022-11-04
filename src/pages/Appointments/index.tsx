@@ -1,129 +1,176 @@
-import { BottomMenu } from "../../components/BottomMenu"
+import { BottomMenu } from "../../components/BottomMenu";
 
-import { Container, CardAppointment, CardService, CardSchedules, Loading} from './styles'
+import {
+  Container,
+  CardAppointment,
+  CardService,
+  CardSchedules,
+  Loading,
+} from "./styles";
 
-import { useAppointment } from '../../Contexts/useAppointments'
-import { useEffect, useState } from 'react'
-import { BarbelModalCancelSchedule } from '../../components/BarbelModalCancelSchedule'
-import axios from "axios"
-import { toast, ToastContainer } from "react-toastify"
-import { Navbar } from "../../components/Navbar"
-import { Appointment } from "../../Interfaces"
+import { useAppointment } from "../../Contexts/useAppointments";
+import { useEffect, useState } from "react";
+import { BarbelModalCancelSchedule } from "../../components/BarbelModalCancelSchedule";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import { Navbar } from "../../components/Navbar";
+import { BarberAppointment } from "../../Interfaces";
 
 export function Appointments() {
+  const { appointments, setAppointments } = useAppointment();
 
-    const { appointments, setAppointments } = useAppointment()
-    
-    const [modalCancelIsOpen, setModalCancel] = useState(false)
+  const accessToken = localStorage.getItem("accessToken");
 
-    const [selectedCancel, setSelectedCancel] = useState({} as Appointment)
+  const [modalCancelIsOpen, setModalCancel] = useState(false);
 
-    const [loadingAppointments, setLoadingAppointments] = useState(false)
+  const [selectedCancel, setSelectedCancel] = useState(
+    {} as BarberAppointment
+  );
 
-    function handleOpenModal(appointmentInfos: Appointment) {
-        setModalCancel(true)
-        setSelectedCancel(appointmentInfos)
-    }
+  const [loadingAppointments, setLoadingAppointments] = useState(false);
 
-    function handleCloseModal() {
-        setModalCancel(false)
-    }
+  function handleOpenModal(appointmentInfos: BarberAppointment) {
+    setModalCancel(true);
+    setSelectedCancel(appointmentInfos);
+  }
 
-    useEffect(() => {
+  function handleCloseModal() {
+    setModalCancel(false);
+  }
 
-        let id = localStorage.getItem("infoUserId")
+  /* console.log(appointments) */
 
-        axios.get(`http://localhost:5000/schedules?userId=${id}`)
+  useEffect(() => {
+    let id = localStorage.getItem("infoUserId");
 
-        .then((response) => {
-            setAppointments(response.data)
-            setLoadingAppointments(true)
-        })
-        .catch(err => {
-            console.log(err)
-            setLoadingAppointments(true)
-        })
+    axios
+      .get(`https://api-braga.herokuapp.com/api/appointments`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((response) => {
+        setAppointments(response.data);
+        console.log(response.data);
+        setLoadingAppointments(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoadingAppointments(true);
+      });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+  }, []);
 
-    function handleCancelSchedule(DeleteAppointmentById: number) {
+  async function handleCancelSchedule(DeleteAppointmentById: number) {
+    await axios.delete(
+      `https://api-braga.herokuapp.com/api/appointments/delete/${DeleteAppointmentById}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
 
-        axios.delete(`http://localhost:5000/schedules/${DeleteAppointmentById}`)
+    setAppointments(
+      appointments.filter((schedule) => schedule.id !== DeleteAppointmentById)
+    );
 
-        setAppointments(appointments.filter((schedule) => schedule.id !== DeleteAppointmentById))
+    setModalCancel(false);
+    toast.success("O agendamento foi cancelado.");
+  }
 
-        setModalCancel(false)
-        toast.success("O agendamento foi cancelado.")
-
-    }
-
-    if(!loadingAppointments) {
-        return (
-            <Loading>
-                <div className="loadingio-spinner-spin-q9009gkv1x"><div className="ldio-6mzwot4130t">
-                <div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div>
-                </div></div>
-            </Loading>
-        )
-    }
-    
+  if (!loadingAppointments) {
     return (
-        <>
-         <Navbar />
+      <Loading>
+        <div className="loadingio-spinner-spin-q9009gkv1x">
+          <div className="ldio-6mzwot4130t">
+            <div>
+              <div></div>
+            </div>
+            <div>
+              <div></div>
+            </div>
+            <div>
+              <div></div>
+            </div>
+            <div>
+              <div></div>
+            </div>
+            <div>
+              <div></div>
+            </div>
+            <div>
+              <div></div>
+            </div>
+            <div>
+              <div></div>
+            </div>
+            <div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </Loading>
+    );
+  }
 
-         <ToastContainer autoClose={3000} />
+  console.log(appointment)
 
-         <Container>
+  return (
+    <>
+      <Navbar />
 
-            <h1>Meus agendamentos</h1>
+      <ToastContainer autoClose={3000} />
 
-            {appointments.length === 0 &&
-                <h4>Você ainda não tem um horário marcado =(</h4>
-            }
+      <Container>
+        <h1>Meus agendamentos</h1>
 
-            {appointments.map((appointment) => (
-                <CardAppointment key={appointment.id} >
-                    <header>
-                        <img src={appointment.barber.avatar_url} alt="" />
-                        <h2>{appointment.barber.name}</h2>
-                    </header>
+        {appointments.length === 0 && (
+          <h4>Você ainda não tem um horário marcado =(</h4>
+        )}
 
-                    <CardService>
-                        <h3>{appointment.service.name}</h3>
+        {appointments.map((info) => (
+          <CardAppointment key={info.id}>
+            <header>
+              <img src={info.avatar_url} alt="" />
+              <h2>{info.name}</h2>
+            </header>
 
-                        <h3> { new Intl.NumberFormat('pt-br', {
-                                style: 'currency',
-                                currency: 'BRL'
-                            }).format(appointment.service.price)}</h3>
-                    </CardService>
+            <CardService>
+              <h3>{info.name}</h3>
 
-                    <CardSchedules>
-                        <div>
-                            {appointment.selectedDay}/{appointment.selectedMonth1}/{appointment.selectedYear}
-                        </div>
+              <h3>
+                {new Intl.NumberFormat("pt-br", {
+                  style: "currency",
+                  currency: "BRL",
+                }).format(info.price_service)}
+              </h3>
+            </CardService>
 
-                        <div>
-                            {appointment.selectedHour}
-                        </div>
-                    </CardSchedules>
+            <CardSchedules>
+              <div>
+                {info.selectedDay}/{info.selectedMonth}/{info.selectedYear}
+              </div>
 
-                    <button onClick={() => handleOpenModal(appointment)} >Cancelar agendamento</button>
+              <div>{info.selectedHour}</div>
+            </CardSchedules>
 
-                    <BarbelModalCancelSchedule
-                        isOpen={modalCancelIsOpen}
-                        onRequestClose={handleCloseModal}
-                        handleCancelSchedule={handleCancelSchedule}
-                        selectedCancel={selectedCancel}
-                    />
-                </CardAppointment>
-            ))}
+            <button onClick={() => handleOpenModal(info)}>
+              Cancelar agendamento
+            </button>
 
-            <BottomMenu />
+            <BarbelModalCancelSchedule
+              isOpen={modalCancelIsOpen}
+              onRequestClose={handleCloseModal}
+              handleCancelSchedule={handleCancelSchedule}
+              selectedCancel={selectedCancel}
+            />
+          </CardAppointment>
+        ))}
 
-            </Container>
-
-        </>
-       
-    )
+        <BottomMenu />
+      </Container>
+    </>
+  );
 }

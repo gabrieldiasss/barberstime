@@ -1,5 +1,5 @@
 import Modal from "react-modal";
-import { Appointment } from "../../Interfaces";
+import { BarberAppointment } from "../../Interfaces";
 
 import { Main, ButtonNo } from './styles'
 
@@ -7,7 +7,7 @@ interface BarberModalCancelScheduleProps {
     isOpen: boolean;
     onRequestClose: () => void;
     handleCancelSchedule(DeleteAppointmentById: number): void;
-    selectedCancel: Appointment;
+    selectedCancel: BarberAppointment;
 }
 
 export function BarbelModalCancelSchedule({isOpen, onRequestClose, handleCancelSchedule, selectedCancel}: BarberModalCancelScheduleProps) {
@@ -30,7 +30,6 @@ export function BarbelModalCancelSchedule({isOpen, onRequestClose, handleCancelS
             </Main>
             
         </Modal>
-        
-        
+    
     )
 }

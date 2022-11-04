@@ -4,7 +4,7 @@ import { IconContext } from "react-icons"
 
 import { Link, useParams } from "react-router-dom"
 import { StarsComponent } from "../../components/Stars"
-import { api } from "../../services/api"
+import axios from 'axios'
 
 import { BsArrow90DegLeft } from "react-icons/bs"
 
@@ -24,7 +24,7 @@ export function BarberServices() {
     const { id } = useParams<{ id: string }>()
 
     useEffect(() => {
-        api.get(`/barbers/${id}`)
+        axios.get(`https://api-braga.herokuapp.com/api/barbersAll/${id}`)
         .then(response => {
             setBarber(response.data)
             setLoading(true)
@@ -32,8 +32,12 @@ export function BarberServices() {
         .catch(err => {
             console.log(err)
         })
+
+        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    console.log(barber.available)
 
     if(!loading) {
         return (
@@ -67,22 +71,21 @@ export function BarberServices() {
 
             <Main>
                 <header>
-                    <img src={barber.avatar_url} alt="" />
+                    <img src={barber.barber?.avatar_url} alt="" />
 
                     <HeaderInfo>
-                        <h2>{barber.name}</h2>
-                        <StarsComponent stars={barber.stars} />
+                        <h2>{barber.barber?.name}</h2>
+                        <StarsComponent stars={barber.barber?.stars} />
                     </HeaderInfo>
-                    
                 </header>
 
                 <ServicesInfo>
                     <h2>Escolher serviço</h2>
 
-                    {barber.services.map((service) => (
+                    {barber.barber?.services?.map((service) => (
                         <div className="servicesItem" key={service.id}>
                             <div>
-                                <p>{service.name}</p>
+                                <p>{service?.name}</p>
                                 <span>
                                     { new Intl.NumberFormat('pt-br', {
                                         style: 'currency',

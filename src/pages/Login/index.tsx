@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import axios from 'axios';
 
@@ -22,10 +22,9 @@ export function Login() {
 
     const { register, handleSubmit} = useForm<LoginUser>()
 
-    const onSubmit: SubmitHandler<LoginUser> = (data) => axios.post("https://api-braga.herokuapp.com/api/login", data) 
+    const onSubmit: SubmitHandler<LoginUser> = (data) => axios.post("https://api-braga.herokuapp.com/api/login", data)
+       
     .then((response) => {
-
-        console.log(response.data)
 
         const { data: { token, user } } = response
 
@@ -41,10 +40,12 @@ export function Login() {
         setLoading(false)
     })
     .catch((err) => {
-        /* toast.error(err?.response?.data?.error) */
+        toast.error(err?.response?.data?.error)
         toast.error(err?.response?.data?.message)
         setLoading(false)
     })
+
+
 
     function handleLoading() {
         setLoading(true)

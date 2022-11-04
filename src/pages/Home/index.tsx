@@ -5,13 +5,13 @@ import { BiSearchAlt2 } from 'react-icons/bi'
 import { BarberCardItem } from "../../components/BarberCardItem"
 import { BottomMenu } from '../../components/BottomMenu'
 import { useEffect, useState } from 'react'
-import { api } from '../../services/api'
-import { Barbers } from '../../Interfaces'
+import { Barbers, BarbersHome } from '../../Interfaces'
 import { Navbar } from '../../components/Navbar'
+import axios from 'axios'
 
 export function Home() {
 
-    const [barbers, setBarbers] = useState<Barbers[]>([])
+    const [barbers, setBarbers] = useState<BarbersHome[]>([])
     const [searchBarber, setSearchBarber] = useState("")
     const [loading, setLoading] = useState(false)
 
@@ -23,7 +23,7 @@ export function Home() {
                 params.name_like = searchBarber
             } 
 
-            api.get("/barbers", {
+            axios.get("https://api-braga.herokuapp.com/api/barbers", {
                 params,
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("accessToken")}`
@@ -34,7 +34,6 @@ export function Home() {
                 setBarbers(response.data)
                 setLoading(true)
             })
-
     }, [searchBarber])
 
     if(!loading) {
@@ -46,6 +45,8 @@ export function Home() {
             </Loading>
         )
     }
+
+    
 
     return (
         <>
@@ -60,8 +61,8 @@ export function Home() {
                     <input type="text" value={searchBarber} onChange={(e) => setSearchBarber(e.target.value)} />
                 </InputFake>
 
-                {barbers.map(barber => (
-                    <BarberCardItem key={barber.id} barber={barber}/>
+                {barbers.map((barber, key) => (
+                    <BarberCardItem key={key} barber={barber}/>
                 ))}        
 
                 {barbers.length === 0 && <h3 style={{marginTop: "25px"}} >Barbeiro não encontrado =(</h3>}

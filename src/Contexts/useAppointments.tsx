@@ -1,30 +1,31 @@
-import { useState, createContext, useContext, ReactNode } from "react"
-import { Appointment, Dispatch } from "../Interfaces"
+import { useState, createContext, useContext, ReactNode } from "react";
+import { BarberAppointment, Dispatch } from "../Interfaces";
 
 interface AppointmentContextData {
-    appointments: Appointment[];
-    setAppointments: Dispatch;
+  appointments: BarberAppointment[];
+  setAppointments: Dispatch;
 }
 
 interface AppointmentProviderProps {
-    children: ReactNode;
+  children: ReactNode;
 }
 
-export const AppointmentsContext = createContext<AppointmentContextData>({} as AppointmentContextData)
+export const AppointmentsContext = createContext<AppointmentContextData>(
+  {} as AppointmentContextData
+);
 
-export function AppointmentsProviders({children}: AppointmentProviderProps) {
+export function AppointmentsProviders({ children }: AppointmentProviderProps) {
+  const [appointments, setAppointments] = useState<BarberAppointment[]>([]);
 
-    const [appointments, setAppointments] = useState<Appointment[]>([])
-
-    return (
-        <AppointmentsContext.Provider value={{ appointments, setAppointments}} >
-            {children}
-        </AppointmentsContext.Provider>
-    )
+  return (
+    <AppointmentsContext.Provider value={{ appointments, setAppointments }}>
+      {children}
+    </AppointmentsContext.Provider>
+  );
 }
 
 export function useAppointment() {
-    const context = useContext(AppointmentsContext)
+  const context = useContext(AppointmentsContext);
 
-    return context
-}  
+  return context;
+}
