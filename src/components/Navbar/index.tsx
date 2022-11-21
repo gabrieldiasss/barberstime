@@ -7,12 +7,12 @@ export function Navbar() {
         <Header>
             <Container>
                 <div>
-                    <h2><Link to="/" >barbers<span>time</span></Link></h2>
+                    <h2><Link to="/home">barbers<span>time</span></Link></h2>
                 </div>
 
                 <nav>
                     <ul>
-                        <li><Link to="/" >HOME</Link></li>
+                        <li><Link to="/home" >HOME</Link></li>
                         <li><Link to="/myappointments" >AGENDAMENTOS</Link></li>
                         <li><Link to="/profile" >PERFIL</Link></li>
                     </ul>

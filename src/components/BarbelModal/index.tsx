@@ -5,7 +5,7 @@ import { Available, Barbers, Services } from '../../Interfaces';
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri'
 
 import { Main, CardBarber, CardServiceSelected, CardDays, CardHours, Month, Days } from './styles'
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
 import { useAppointment } from '../../Contexts/useAppointments';
